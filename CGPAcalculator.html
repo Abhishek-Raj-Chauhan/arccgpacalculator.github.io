@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&family=Inconsolata:wght@500&family=Island+Moments&family=Montserrat:wght@600&family=Moon+Dance&family=Nunito+Sans:wght@200&family=Open+Sans&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-size:1.7vw;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+        body{
+            background-color:rgba(223, 203, 255, 0.623);
+        }
+        .subj {
+            height:0px;
+            overflow: hidden;
+        }
+        .img{
+            display:none;
+            margin-top: 30px;
+        }
+        .head{
+            background-color: rgb(41, 1, 73);
+            position: fixed;
+            width: 100vw;
+            height: 12vh;
+            color: rgb(200, 164, 241);
+            padding: 10px 50px;
+            display:flex;
+            justify-content: space-between;
+            font-family: 'Nunito Sans', sans-serif;
+            box-shadow: 2px 2px 2px 2px rgb(135, 95, 168);
+        }
+        .head1{
+            color: rgb(200, 164, 241);
+            /* padding: 10px 50px; */
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+        .head2{
+            margin-right: 7vw;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            height:100%;
+        }
+        .head2 ul{
+            height:100%;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .list li{
+            height:100%;
+            list-style-type: none;
+            padding: 1vw;
+            align-self: center;
+        }
+        .cl{
+            height:100%;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        a{
+            font-weight: bold;
+            background-color: rgb(41, 1, 73);
+            z-index: 1;
+            height:90%;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            text-decoration: none;
+            color: rgb(200, 164, 241);
+            padding: 0 2vw;
+            border-radius: 10px;
+            transition: all ease 0.4s;
+        }
+        a:hover{
+            background-color: rgba(225, 148, 255, 0.548);
+            color: black;
+            font-size: 1.8vw;
+        }
+        @keyframes blink{
+            0%{
+                width:0%;
+            }
+            50%{
+                width:100%;
+            }
+            100%{
+                width:0%;
+            }
+        }
+        @keyframes blink2{
+            from,to{
+                border-color: transparent;
+            }
+            
+            50%{
+                border-color: orange;
+            }
+        }
+        .h1,.h2{
+            font-size:4vw;
+        }
+        .h1{
+            padding-right: 1vw;
+        }
+        .h2{
+            width: fit-content;
+            font-family: monospace;
+            animation: 6s steps(10,end) infinite blink ,0.65s infinite step-end blink2;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid rgb(240, 204, 0);
+        }
+        .wrap{
+            background-size: cover;
+            width:100vw;
+            display:flex;
+            justify-content: flex-start;
+            flex-direction: column;
+        }
+        form{
+            font-weight: bolder;
+            margin-top: 13vw;
+            background-color: rgba(41, 1, 73, 0.548);
+            border-radius: 20px;
+            padding: 20px;
+            /* margin-bottom: 15px; */
+            color:white;
+            box-shadow: 7px 7px 7px 7px rgb(41, 1, 73);
+        }
+        .form{
+            align-self: center;
+            width:80%;
+            display:flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-bottom: 25px;
+        }
+        .int label{
+            margin-bottom: 15px;
+        }
+        .int{
+            display: flex;
+            flex-direction: column;
+            width:100%;
+            justify-content: center;
+            align-items: center;
+            height:9vw;
+        }
+        #btn{
+            display:none;
+            margin-top: 25px;
+            height:4.3vw;
+            border-radius: 10px;
+            background-color: red;
+            color: white;
+            margin-bottom: 10px;
+            box-shadow: 5px 5px 5px 5px rgb(99, 10, 10);
+        }
+        .subjc{
+            display:flex;
+            justify-content: space-between;
+            padding: 15px 5px;
+        }
+        #sub{
+            height:3.0vw;;
+            border-radius: 1.5vw;
+            margin-left: 15px;
+            align-self: center;
+            background-color: rgb(246, 239, 255);
+        }
+        select{
+            text-align: center;
+            color:black;
+            font-weight: bolder;
+            width:30%;
+            height:3.3vw;
+            border-radius: 10px;
+            background-color: rgb(200, 164, 241);
+        }
+        input{
+            text-align: center;
+            font-weight: bolder;
+        }
+        .imgh{
+            margin-top: 25px;
+            display:flex;
+            justify-content: center;
+        }
+        .img img{
+            width:480px;
+        }
+        .img img,.img p{
+            align-self: center;
+        }
+        .gp{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pg{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .alk{
+            display: flex;
+            justify-content: space-around;
+            width:100vw;
+            margin-bottom: 50px;
+        }
+        .gpl{
+            text-shadow: 1px 1px 1px rgb(99, 10, 10);
+        }
+        .py{
+            text-align: right;
+            margin-top: 20px;
+        }
+        .subj1c,.subj1g{
+            height:3.6vw;
+            width:30%;
+            border-radius: 1.5vw;
+            background-color: rgb(246, 239, 255);
+        }
+        @media Screen and (max-width:450px){
+            .head{
+                height: 5vh;
+                padding: 10px 5vw;
+            }
+            .int{
+                height:10vw;
+            }
+            .head2{
+                margin-right:5vw;
+            }
+            a{
+                font-size: 6.0vw;
+            }
+            a:hover{
+                font-size: 6.1vw;
+            }
+            .img img{
+                width:180px;
+                height:100px;
+            }
+            .subj1c,.subj1g{
+                width:30%;
+                border-radius: 2vw;
+            }
+            #sub{
+                border-radius: 3.5vw;
+            }
+        }
+        @media Screen and (max-width:1120px) {
+            #sub{
+                height:5.3vw;
+                border-radius: 2.5vw;
+            }
+            form{
+                margin-top: 30vw;
+                box-shadow: 3px 3px 3px 3px rgb(41, 1, 73);
+            }
+            select{
+                height:5.3vw;
+            }
+            #btn{
+                height:9.3vw;
+                box-shadow: 3px 3px 3px 3px rgb(99, 10, 10);
+            }
+            .h1,.h2{
+                font-size:5vw;
+            }
+            *{
+                font-size:3vw;
+            }
+            .gpl{
+                text-shadow: 0px 0px 0px red;
+            }
+            /* #lkjm{
+                width:fit-content;
+                overflow: hidden;
+            } */
+            .head{
+                height: 11vw;
+                padding: 10px 6vw;
+            }
+            .head2{
+                margin-right:7vw;
+            }
+            a{
+                font-size: 2.5vw;
+            }
+            a:hover{
+                font-size: 2.6vw;
+            }
+            .img img{
+                width:180px;
+                height:100px;
+            }
+            .subj1c,.subj1g{
+                height:5vw;
+                width:30%;
+                border-radius: 2vw;
+            }
+        }
+        </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="head">
+            <div class="head1">
+                <span class="h1">cgpa</span>
+            <div id="lkjm"><div class="h2">Calculator</div></div>
+            </div>
+            <div class="head2">
+                <ul class="list">
+                    <li><div class="cl"><a target="_blank" href="index.html">GPA Calculator</a></div></li>
+                    <li><div class="cl">
+                        <a href="CGPAcalculator.html">CGPA Calculator</a>
+                    </div></li>
+                </ul>
+            </div>
+        </div>
+        <div class="form">
+            <form name="form1">
+                <div class="int">
+                    <label for="sub">Semester Count:</label>
+                    <input name="count" type="number" id="sub" oninput="inputf()">
+                </div>
+                <br>
+                <div class="subj">
+                    <div class="subjc">
+                        <label for="sub1">Semester 1: </label>
+                        <input type="number" class="subj1c" placeholder="Credits" onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    
+                        <input type="number" class="subj1g" placeholder="GPA" min="0" onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    </div>
+                </div>
+                <div class="subj">
+                    <div class="subjc">
+                        <label for="sub2">Semester 2: </label>
+                        <input type="number" class="subj1c" placeholder="Credits"  onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    
+                        <input type="number" class="subj1g" placeholder="GPA" onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    </div>
+                </div>
+                <div class="subj">
+                    <div class="subjc">
+                        <label for="sub3">Semester 3: </label>
+                        <input type="number" class="subj1c" placeholder="Credits"  onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    
+                        <input type="number" class="subj1g" placeholder="GPA" onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    </div>
+                </div>
+                <div class="subj">
+                    <div class="subjc">
+                        <label for="sub1">Semester 4: </label>
+                        <input type="number" class="subj1c" placeholder="Credits"  onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    
+                        <input type="number" class="subj1g" placeholder="GPA" onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    </div>
+                </div>
+                <div class="subj">
+                    <div class="subjc">
+                        <label for="sub5">Semester 5: </label>
+                        <input type="number" class="subj1c" placeholder="Credits"  onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    
+                        <input type="number" class="subj1g" placeholder="GPA" onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    </div>
+                </div>
+                <div class="subj">
+                    <div class="subjc">
+                        <label for="sub1">Semester 6: </label>
+                        <input type="number" class="subj1c" placeholder="Credits"  onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    
+                        <input type="number" class="subj1g" placeholder="GPA" onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    </div>
+                </div>
+                <div class="subj">
+                    <div class="subjc">
+                        <label for="sub1">Semester 7: </label>
+                        <input type="number" class="subj1c" placeholder="Credits"  onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    
+                        <input type="number" class="subj1g" placeholder="GPA" onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    </div>
+                </div>
+                <div class="subj">
+                    <div class="subjc">
+                        <label for="sub8">Semester 8: </label>
+                        <input type="number" class="subj1c" placeholder="Credits"  onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    
+                        <input type="number" class="subj1g" placeholder="GPA" onkeyup="if(this.value<0){this.value= this.value * -1}">
+                    </div>
+                </div>
+            </form>
+            <button id="btn" onclick="cgpa()">
+                Calculate</button>
+            <div class="py">~ Created by Abhishek Raj Chauhan</div>
+            <div class="img">
+                <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202106/cover4_new_1200x768.jpeg?1ddh2wMj.1sWvDuJNNtgqjyvpihWf3BZ&size=1200:675" alt="" width="500px" height="300px">
+                <br>
+                <p>Please give valid input!!</p>
+            </div>
+        </div>
+        <div class="alk">
+            <div class="gp"><span class="pg"></span></div>
+            <div class="imgh">
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+<script defer>
+    function inputf() {
+        let val = document.getElementById('sub').value;
+        for (var i = 0; i < 8; i++) {
+            document.querySelectorAll('.subj')[i].style.transition="all 0.7s ease";
+                document.querySelectorAll('.subj')[i].style.height="0px";
+                document.querySelectorAll('.img')[0].style.display='none';
+                document.querySelectorAll('#btn')[0].style.display='none';
+            }
+        if (val > 0 && val <= 8) {
+            for (var i = 0; i < val; i++) {
+                document.querySelectorAll('.subj')[i].style.height="3.6rem";
+                document.querySelectorAll('#btn')[0].style.display='block';
+            }
+        }
+        else if (val < 0 || val > 8) {
+            document.querySelectorAll('.img')[0].style.display='flex';
+            document.querySelectorAll('.img')[0].style.flexDirection='column';
+            document.querySelectorAll('.img')[0].style.justifyContent='center';
+            for (var i = 0; i < val; i++) {
+                document.querySelectorAll('.subj')[i].style.height="0px";
+            }
+        }
+    }
+    var c = 0;
+    function cgpa(){
+        if(c==0){
+            let gp = 0;
+            let cdt = 0;
+            let val = document.getElementById('sub').value;
+            for (var i = 0; i < val; i++){
+                let df = document.getElementsByClassName('subj1c')[i].value;
+                let ef = document.getElementsByClassName('subj1g')[i].value;
+                df = Number(df);
+                ef = Number(ef);
+                gp = Number(gp);
+                cdt = Number(cdt);
+                gp = gp + (df*ef);
+                cdt += df;
+            }
+            var final = gp/cdt;
+            final = parseFloat(final).toFixed(2);
+            console.log(final);
+            var elem = document.getElementsByClassName('pg');
+            var elem2 = document.getElementsByClassName('imgh');
+            var crelem = document.createElement('p');
+            crelem.className='gpl';
+            crelem.innerText="[Commulative Grade Point Average] - CGPA = "+final;
+            elem[0].appendChild(crelem);
+            crelem.style.color='black';
+            crelem.style.fontSize='3vw';
+            crelem.style.fontWeight='bolder';
+            if(final==10){
+                var imgf = document.createElement('img');
+                imgf.src="https://c.tenor.com/iyrgl0wcSr0AAAAC/ohhhh-reaction.gif";
+                elem2[0].appendChild(imgf);
+                imgf.style.width="38vw"
+            }
+            if(final<10 && final >=9){
+                var imgf = document.createElement('img');
+                imgf.src="https://humornama.com/wp-content/uploads/2020/12/Mithai-Batwa-Dijiye-Meme-Template-of-Munna-Bhaiya-Mirzapur-1024x576.jpg";
+                elem2[0].appendChild(imgf);
+                imgf.style.width="38vw"
+            }
+            if(final<9 && final >=0){
+                var imgf = document.createElement('img');
+                imgf.src="https://calculator.vitrendz.com/static/media/you-can-do-it.0bc737da.jpg";
+                elem2[0].appendChild(imgf);
+                imgf.style.width="30vw"
+            }
+            c +=1;
+        }
+    }
+</script>
+</html>
